@@ -1,3 +1,4 @@
+import { Repair } from 'helpers/interfaces/Repair';
 import http from './httpService'
 
 const apiEndpoint = 'http://localhost:8080/repairs';
@@ -21,18 +22,4 @@ export function getRepair(repairId: number){
 
 export function saveRepair(repair: Repair){
     return http.post(apiEndpoint, repair)
-}
-
-interface Repair {
-    id?: number;
-    start: string;
-    end: string;
-    price: number;
-    nationalId: string;
-    firstName: string;
-    lastName: string;
-    registrationNumber: string;
-    category: string;
-    email: string;
-    
 }

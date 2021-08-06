@@ -1,3 +1,4 @@
+import { Client } from 'helpers/interfaces/Client';
 import http from './httpService'
 
 const apiEndpoint = 'http://localhost:8080/clients';
@@ -20,10 +21,3 @@ export function saveClient(client: Client){
     return http.post(apiEndpoint, client)
 }
 
-interface Client {
-    id?: number;
-    firstName: string;
-    lastName: string;
-    phoneNumber: string;
-    nationalId: string;
-}

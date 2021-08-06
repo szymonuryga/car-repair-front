@@ -1,4 +1,5 @@
 import http from './httpService'
+import { Mechanic } from 'helpers/interfaces/Mechanic';
 
 const apiEndpoint = 'http://localhost:8080/mechanics';
 
@@ -18,13 +19,4 @@ export function deleteMechanic(mechanicId: number){
 
 export function saveMechanic(mechanic: Mechanic){
     return http.post(apiEndpoint, mechanic)
-}
-
-interface Mechanic {
-    id?: number;
-    firstName: string;
-    lastName: string;
-    phoneNumber: string;
-    email: string;
-    salary: number;
 }
