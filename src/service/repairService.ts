@@ -4,7 +4,7 @@ import http from './httpService'
 const apiEndpoint = 'http://localhost:8080/repairs';
 
 
-export function getReapirs(){
+export function getRepairs(){
     return http.get(apiEndpoint);
 }
 

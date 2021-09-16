@@ -1,7 +1,10 @@
-import React from 'react';
+import { useClients } from 'hooks/useClients';
 import { Logo, StyledLink, Wrapper } from './Navigation.styles';
 
 const Navigation = () => {
+  const { getAllClients } = useClients();
+
+  console.log(getAllClients());
   return (
     <Wrapper>
       <Logo>

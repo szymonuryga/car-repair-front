@@ -6,7 +6,7 @@ export const useClients = () => {
     const getClientById = useCallback( async (clientId: number) => {
         try{
             const result = await getClient(clientId);
-            return result.data.client;
+            return result.data;
         } catch (e) {
             console.log(e);
         }
@@ -15,7 +15,8 @@ export const useClients = () => {
     const getAllClients = useCallback(async ()=>{
         try {
             const result = await getClients();
-            return result.data.clients;
+            console.log(result.data);
+            return result.data;
         } catch (e) {
             console.log(e);
         }
