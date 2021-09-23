@@ -1,10 +1,6 @@
-import { useClients } from 'hooks/useClients';
 import { Logo, StyledLink, Wrapper } from './Navigation.styles';
 
 const Navigation = () => {
-  const { getAllClients } = useClients();
-
-  console.log(getAllClients());
   return (
     <Wrapper>
       <Logo>
@@ -14,11 +10,10 @@ const Navigation = () => {
           Shop
         </h1>
       </Logo>
-      <StyledLink to="/group">Dashboard</StyledLink>
-      <StyledLink to="/group">Mechanics</StyledLink>
-      <StyledLink to="/group">Cars</StyledLink>
-      <StyledLink to="/group">Clients</StyledLink>
-      <StyledLink to="/group">Statistic</StyledLink>
+      <StyledLink to="/repairs">Dashboard</StyledLink>
+      <StyledLink to="/mechanics">Mechanics</StyledLink>
+      <StyledLink to="/cars">Cars</StyledLink>
+      <StyledLink to="/clients">Clients</StyledLink>
     </Wrapper>
   );
 };

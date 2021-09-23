@@ -15,7 +15,6 @@ export const useClients = () => {
     const getAllClients = useCallback(async ()=>{
         try {
             const result = await getClients();
-            console.log(result.data);
             return result.data;
         } catch (e) {
             console.log(e);
