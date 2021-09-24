@@ -16,7 +16,7 @@ const initalClientState = {
 
 const ClientForm = () => {
   const [clientFormValues, setClientFormValues] = useState(initalClientState);
-  const [error, setError] = useState('');
+  const [error, setError] = useState<Array<string>>([]);
   const [isValid, setIsValid] = useState(false);
   const { addClient } = useClients();
   let history = useHistory();
@@ -29,18 +29,16 @@ const ClientForm = () => {
   };
 
   const validate = () => {
-    if (clientFormValues.firstName.trim() === '') {
-      setError('First Name is required');
-      setIsValid(false);
+    let errors: Array<string> = [];
+    const phoneRegex = /\(?(\d{3})\)?[ .-]?(\d{3})[ .-]?(\d{3})/;
+    clientFormValues.firstName.trim() === '' && errors.push('First Name is required');
+    clientFormValues.lastName.trim() === '' && errors.push('Lasst Name is required');
+    clientFormValues.nationalId.trim().length !== 11 && errors.push('National Id length must be 11');
+    if (!phoneRegex.test(clientFormValues.phoneNumber)) {
+      errors.push('Phone number must have 9 digits');
     }
-    // clientFormValues.lastName.trim() === '' && setError('Lasst Name is required');
-    // clientFormValues.nationalId.trim() === '' && setError('National ID is required');
-    // clientFormValues.phoneNumber.trim() === '' && setError('Phone number is required');
-    // clientFormValues.nationalId.trim().length === 11 && setError('National Id length must be 11');
-    // clientFormValues.phoneNumber.trim().match(/\(?(\d{3})\)?[ .-]?(\d{3})[ .-]?(\d{3})/)
-    //   ? setError('Phone number must have pattern XXX-XXX-XXX')
-    //   : setError('');
-    setIsValid(error !== '');
+    setIsValid(errors.length === 0);
+    setError(errors);
   };
 
   const handleAddClient = async (e: React.SyntheticEvent) => {
@@ -62,7 +60,7 @@ const ClientForm = () => {
       setClientFormValues(initalClientState);
       setTimeout(() => {
         history.push('/clients');
-      }, 300);
+      }, 400);
     }
   };
 
@@ -74,7 +72,7 @@ const ClientForm = () => {
         <FormField label="Last Name" id="lastName" name="lastName" value={clientFormValues.lastName} onChange={handleInputChange} />
         <FormField label="National Id" id="nationalId" name="nationalId" value={clientFormValues.nationalId} onChange={handleInputChange} />
         <FormField label="Phone Number" id="phoneNumber" name="phoneNumber" value={clientFormValues.phoneNumber} onChange={handleInputChange} />
-        {error !== '' && <Error>{error}</Error>}
+        {error.length !== 0 && <Error>{error[error.length - 1]}</Error>}
         <Button isBig type="submit">
           Add
         </Button>

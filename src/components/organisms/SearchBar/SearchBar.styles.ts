@@ -2,12 +2,12 @@ import styled from 'styled-components';
 import { Input } from 'components/atoms/Input/Input';
 
 interface HighlightedProps {
-    isHighlighted: boolean;
-};
+  isHighlighted: boolean;
+}
 
-interface VisibleProps{
-    isVisible: boolean;
-};
+interface VisibleProps {
+  isVisible: boolean;
+}
 
 export const SearchBarWrapper = styled.div`
   grid-row: 1 / 2;

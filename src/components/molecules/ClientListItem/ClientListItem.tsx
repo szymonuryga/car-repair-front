@@ -9,6 +9,7 @@ const ClientListItem: React.FC<Client> = ({ id, firstName, lastName, nationalId,
   const handleDeleteClient = async (id: number) => {
     try {
       await removeClient(id);
+      window.location.reload();
     } catch (e) {
       console.log(e);
     }
@@ -19,7 +20,7 @@ const ClientListItem: React.FC<Client> = ({ id, firstName, lastName, nationalId,
       <p>{lastName}</p>
       <p>{nationalId}</p>
       <p>{phoneNumber}</p>
-      <Button onClick={() => console.log(Number(id))}>X</Button>
+      <Button onClick={() => handleDeleteClient(Number(id))}>X</Button>
     </Wrapper>
   );
 };

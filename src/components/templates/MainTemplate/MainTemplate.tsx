@@ -8,7 +8,6 @@ const MainTemplate = ({ children }: any) => {
   return (
     <Wrapper>
       <Navigation />
-
       {children}
       <RankingSection />
     </Wrapper>
