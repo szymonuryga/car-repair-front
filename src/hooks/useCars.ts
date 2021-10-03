@@ -1,11 +1,20 @@
 import { Car } from 'helpers/interfaces/Car';
 import { useCallback } from 'react';
-import { getCar, getCars, saveCar, deleteCar } from 'service/carService';
+import { getCar, getCars, getCarsByRegistration, saveCar, deleteCar } from 'service/carService';
 
 export const useCars = () => {
   const getAllCars = useCallback(async () => {
     try {
       const result = await getCars();
+      return result.data;
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
+
+  const getAllCarsByRegistrationNumbers = useCallback(async () => {
+    try {
+      const result = await getCarsByRegistration();
       return result.data;
     } catch (e) {
       console.log(e);
@@ -39,6 +48,7 @@ export const useCars = () => {
 
   return {
     getAllCars,
+    getAllCarsByRegistrationNumbers,
     getCarById,
     addCar,
     removeCar,

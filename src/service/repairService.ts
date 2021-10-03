@@ -8,7 +8,7 @@ export function getRepairs() {
 }
 
 export function endRepair(repairId: number) {
-  return http.post(apiEndpoint + '/' + repairId + 'end');
+  return http.post(apiEndpoint + '/' + repairId + '/end');
 }
 
 export function assignPrice(repairId: number, price: number) {

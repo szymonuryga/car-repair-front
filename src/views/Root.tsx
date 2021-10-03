@@ -10,6 +10,8 @@ import MechanicsList from 'components/organisms/MechanicsList/MechanicList';
 import ClientForm from 'components/organisms/ClientForm/ClientForm';
 import MechanicsForm from 'components/organisms/MechanicsForm/MechanicsForm';
 import CarForm from 'components/organisms/CarForm/CarForm';
+import RepairsList from 'components/organisms/RepairsList/RepairsList';
+import RepairForm from 'components/organisms/RepairForm/RepairForm';
 
 const Root = () => {
   return (
@@ -21,6 +23,12 @@ const Root = () => {
             <Switch>
               <Route exact path="/">
                 <Redirect to="/repairs" />
+              </Route>
+              <Route path="/repairs/add">
+                <RepairForm />
+              </Route>
+              <Route path="/repairs">
+                <RepairsList />
               </Route>
               <Route path="/cars/add">
                 <CarForm />

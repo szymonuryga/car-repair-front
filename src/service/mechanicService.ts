@@ -7,6 +7,10 @@ export function getMechanics() {
   return http.get(apiEndpoint);
 }
 
+export function getMechanicsByEmails() {
+  return http.get(apiEndpoint + '/emails');
+}
+
 export function getMechanic(mechanicId: number) {
   return http.get(apiEndpoint + '/' + mechanicId);
 }

@@ -7,6 +7,10 @@ export function getClients() {
   return http.get(apiEndpoint);
 }
 
+export function getClientsByNationalId() {
+  return http.get(apiEndpoint + '/nationals');
+}
+
 export function getClient(clientId: number) {
   return http.get(apiEndpoint + '/' + clientId);
 }

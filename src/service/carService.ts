@@ -7,6 +7,10 @@ export function getCars() {
   return http.get(apiEndpoint);
 }
 
+export function getCarsByRegistration() {
+  return http.get(apiEndpoint + '/registrations');
+}
+
 export function getCar(carId: number) {
   return http.get(apiEndpoint + '/' + carId);
 }

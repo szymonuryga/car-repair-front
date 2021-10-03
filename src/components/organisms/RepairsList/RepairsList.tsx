@@ -4,23 +4,23 @@ import { Button } from 'components/atoms/Button/Button';
 import { StyledList } from 'components/atoms/List/List';
 import { Title } from 'components/atoms/Title/Title';
 import { Header } from 'components/atoms/Header/Header';
-import { useMechanics } from 'hooks/useMechanics';
-import { Mechanic } from 'helpers/interfaces/Mechanic';
-import MechanicListItem from 'components/molecules/MechanicListItem/MechanicListItem';
 import { Link } from 'react-router-dom';
 import Pagination from 'components/molecules/Pagination/Pagination';
+import { useRepairs } from 'hooks/useRepairs';
+import { Repair } from 'helpers/interfaces/Repair';
+import RepairListItem from 'components/molecules/RepairListItem/RepairListItem';
 
-const MechanicsList = () => {
-  const [mechanics, setMechanics] = useState([]);
-  const { getAllMechanics } = useMechanics();
+const RepairsList = () => {
+  const [repairs, setRepairs] = useState([]);
+  const { getAllRepairs } = useRepairs();
   const dataLimit = window.innerHeight < 900 ? 7 : 12;
-  const [pages, setPages] = useState(Math.ceil(mechanics.length / dataLimit));
+  const [pages, setPages] = useState(Math.ceil(repairs.length / dataLimit));
   const [currentPage, setCurrentPage] = useState(1);
   const [pageLimit, setPageLimit] = useState(pages);
   const getPaginatedData = () => {
     const startIndex = currentPage * dataLimit - dataLimit;
     const endIndex = startIndex + dataLimit;
-    return mechanics.slice(startIndex, endIndex);
+    return repairs.slice(startIndex, endIndex);
   };
 
   function goToNextPage() {
@@ -37,34 +37,38 @@ const MechanicsList = () => {
 
   useEffect(() => {
     (async () => {
-      const mechanics = await getAllMechanics();
-      setMechanics(mechanics);
-      setPages(Math.ceil(mechanics.length / dataLimit));
+      const repairs = await getAllRepairs();
+      setRepairs(repairs);
+      setPages(Math.ceil(repairs.length / dataLimit));
       if (pages) {
         const limit = pages < 4 ? pages : 4;
         setPageLimit(limit);
       }
     })();
-  }, [getAllMechanics, pages]);
+  }, [getAllRepairs, pages]);
   return (
     <ViewWrapper>
       <Header>
-        <Title>Mechanics</Title>
-        <Link to="mechanics/add">
+        <Title>Repair</Title>
+        <Link to="repairs/add">
           <Button isBig>Add</Button>
         </Link>
       </Header>
       <StyledList>
         {getPaginatedData().length > 0 &&
-          getPaginatedData().map((mechanic: Mechanic) => (
-            <MechanicListItem
-              id={mechanic.id}
-              firstName={mechanic.firstName}
-              lastName={mechanic.lastName}
-              email={mechanic.email}
-              phoneNumber={mechanic.phoneNumber}
-              salary={mechanic.salary}
-              key={mechanic.id}
+          getPaginatedData().map((repair: Repair) => (
+            <RepairListItem
+              id={repair.id}
+              firstName={repair.firstName}
+              lastName={repair.lastName}
+              price={repair.price}
+              nationalId={repair.nationalId}
+              registrationNumber={repair.registrationNumber}
+              category={repair.category}
+              email={repair.email}
+              start={repair.start}
+              end={repair.end}
+              key={repair.id}
             />
           ))}
       </StyledList>
@@ -82,4 +86,4 @@ const MechanicsList = () => {
   );
 };
 
-export default MechanicsList;
+export default RepairsList;

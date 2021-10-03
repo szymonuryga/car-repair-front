@@ -1,11 +1,20 @@
 import { useCallback } from 'react';
-import { deleteMechanic, getMechanic, getMechanics, saveMechanic } from 'service/mechanicService';
+import { deleteMechanic, getMechanic, getMechanicsByEmails, getMechanics, saveMechanic } from 'service/mechanicService';
 import { Mechanic } from 'helpers/interfaces/Mechanic';
 
 export const useMechanics = () => {
   const getAllMechanics = useCallback(async () => {
     try {
       const result = await getMechanics();
+      return result.data;
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
+
+  const getAllMechanicsByEmails = useCallback(async () => {
+    try {
+      const result = await getMechanicsByEmails();
       return result.data;
     } catch (e) {
       console.log(e);
@@ -39,6 +48,7 @@ export const useMechanics = () => {
 
   return {
     getAllMechanics,
+    getAllMechanicsByEmails,
     getMechanicsById,
     addMechanic,
     removeMechanic,
