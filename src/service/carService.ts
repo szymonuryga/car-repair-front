@@ -3,15 +3,19 @@ import http from './httpService';
 
 const apiEndpoint = 'http://localhost:8080/cars';
 
-export function getCars() {
+export function findCars() {
   return http.get(apiEndpoint);
 }
 
-export function getCarsByRegistration() {
+export function findTheMostFrequentlyBrand() {
+  return http.get(apiEndpoint + '/brand');
+}
+
+export function findCarsByRegistration() {
   return http.get(apiEndpoint + '/registrations');
 }
 
-export function getCar(carId: number) {
+export function findCar(carId: number) {
   return http.get(apiEndpoint + '/' + carId);
 }
 

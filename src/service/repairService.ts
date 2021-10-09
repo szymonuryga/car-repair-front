@@ -3,8 +3,24 @@ import http from './httpService';
 
 const apiEndpoint = 'http://localhost:8080/repairs';
 
-export function getRepairs() {
+export function findRepairs() {
   return http.get(apiEndpoint);
+}
+
+export function findTheMostFrequentlyCar() {
+  return http.get(apiEndpoint + '/car');
+}
+
+export function findTheMostFrequentlyClient() {
+  return http.get(apiEndpoint + '/client');
+}
+
+export function findTheMostFrequentlyCategory() {
+  return http.get(apiEndpoint + '/category');
+}
+
+export function findTheMostFrequentlyMechanic() {
+  return http.get(apiEndpoint + '/mechanic');
 }
 
 export function endRepair(repairId: number) {
@@ -15,7 +31,7 @@ export function assignPrice(repairId: number, price: number) {
   return http.post(apiEndpoint + '/' + repairId + '?price=' + price);
 }
 
-export function getRepair(repairId: number) {
+export function findRepair(repairId: number) {
   return http.get(apiEndpoint + '/' + repairId);
 }
 

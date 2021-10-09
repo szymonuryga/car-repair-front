@@ -3,15 +3,15 @@ import http from './httpService';
 
 const apiEndpoint = 'http://localhost:8080/category';
 
-export function getCategories() {
+export function findCategories() {
   return http.get(apiEndpoint);
 }
 
-export function getCategoriesName() {
+export function findCategoriesName() {
   return http.get(apiEndpoint + '/names');
 }
 
-export function getCategory(categoryId: number) {
+export function findCategory(categoryId: number) {
   return http.get(apiEndpoint + '/' + categoryId);
 }
 

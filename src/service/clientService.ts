@@ -3,15 +3,15 @@ import http from './httpService';
 
 const apiEndpoint = 'http://localhost:8080/clients';
 
-export function getClients() {
+export function findClients() {
   return http.get(apiEndpoint);
 }
 
-export function getClientsByNationalId() {
+export function findClientsByNationalId() {
   return http.get(apiEndpoint + '/nationals');
 }
 
-export function getClient(clientId: number) {
+export function findClient(clientId: number) {
   return http.get(apiEndpoint + '/' + clientId);
 }
 

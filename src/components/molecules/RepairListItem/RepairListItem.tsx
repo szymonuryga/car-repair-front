@@ -15,20 +15,33 @@ const RepairListItem: React.FC<Repair> = ({
   email,
   category,
 }): JSX.Element => {
-  const { endOfRepair } = useRepairs();
-  const handleDeleteMechanic = async (id: number) => {
-    console.log(id);
+  const { endOfRepair, assignPriceToRepair } = useRepairs();
+  const handleFinishRepair = async (id: number) => {
+    try {
+      await endOfRepair(id);
+      window.location.reload();
+    } catch (e) {
+      console.log(e);
+    }
   };
+
+  // const handleAsignPrice = async (id: number) => {
+  //   try {
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
   return (
     <div>
-      <p>{price}</p>
       <p>{email}</p>
-      <p>{start}</p>
-      <p>{end}$</p>
-      <p>{category}</p>
-      <p>{nationalId}</p>
+      <p>
+        {firstName} {lastName}
+      </p>
+      <p>{start?.substring(0, 10)}</p>
       <p>{registrationNumber}</p>
-      <Button onClick={() => handleDeleteMechanic(Number(id))}>End</Button>
+      {end ? <p>{end.substring(0, 10)}</p> : <Button onClick={() => handleFinishRepair(Number(id))}>Finish</Button>}
+      {price !== 0 ? <p>{price}</p> : ''}
+      {/* <Button onClick={() => handleAsignPrice(Number(id))}>End</Button> */}
     </div>
   );
 };

@@ -1,11 +1,11 @@
 import { Category } from 'helpers/interfaces/Category';
 import { useCallback } from 'react';
-import { getCategories, getCategoriesName, saveCategory, deleteCategory, getCategory } from 'service/categoryService';
+import { findCategories, findCategoriesName, saveCategory, deleteCategory, findCategory } from 'service/categoryService';
 
 export const useCategories = () => {
   const getAllCategories = useCallback(async () => {
     try {
-      const result = await getCategories();
+      const result = await findCategories();
       return result.data;
     } catch (e) {
       console.log(e);
@@ -14,7 +14,7 @@ export const useCategories = () => {
 
   const getAllCategoriesName = useCallback(async () => {
     try {
-      const result = await getCategoriesName();
+      const result = await findCategoriesName();
       return result.data;
     } catch (e) {
       console.log(e);
@@ -23,7 +23,7 @@ export const useCategories = () => {
 
   const getCategoryById = useCallback(async (categoryId: number) => {
     try {
-      const result = await getCategory(categoryId);
+      const result = await findCategory(categoryId);
       return result.data;
     } catch (e) {
       console.log(e);

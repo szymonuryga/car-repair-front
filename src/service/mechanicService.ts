@@ -3,15 +3,15 @@ import { Mechanic } from 'helpers/interfaces/Mechanic';
 
 const apiEndpoint = 'http://localhost:8080/mechanics';
 
-export function getMechanics() {
+export function findMechanics() {
   return http.get(apiEndpoint);
 }
 
-export function getMechanicsByEmails() {
+export function findMechanicsByEmails() {
   return http.get(apiEndpoint + '/emails');
 }
 
-export function getMechanic(mechanicId: number) {
+export function findMechanic(mechanicId: number) {
   return http.get(apiEndpoint + '/' + mechanicId);
 }
 

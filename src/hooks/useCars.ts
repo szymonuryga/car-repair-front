@@ -1,11 +1,20 @@
 import { Car } from 'helpers/interfaces/Car';
 import { useCallback } from 'react';
-import { getCar, getCars, getCarsByRegistration, saveCar, deleteCar } from 'service/carService';
+import { findCar, findCars, findTheMostFrequentlyBrand, findCarsByRegistration, saveCar, deleteCar } from 'service/carService';
 
 export const useCars = () => {
   const getAllCars = useCallback(async () => {
     try {
-      const result = await getCars();
+      const result = await findCars();
+      return result.data;
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
+
+  const getTheMostFrequentlyBrand = useCallback(async () => {
+    try {
+      const result = await findTheMostFrequentlyBrand();
       return result.data;
     } catch (e) {
       console.log(e);
@@ -14,7 +23,7 @@ export const useCars = () => {
 
   const getAllCarsByRegistrationNumbers = useCallback(async () => {
     try {
-      const result = await getCarsByRegistration();
+      const result = await findCarsByRegistration();
       return result.data;
     } catch (e) {
       console.log(e);
@@ -23,7 +32,7 @@ export const useCars = () => {
 
   const getCarById = useCallback(async (carId: number) => {
     try {
-      const result = await getCar(carId);
+      const result = await findCar(carId);
       return result.data;
     } catch (e) {
       console.log(e);
@@ -49,6 +58,7 @@ export const useCars = () => {
   return {
     getAllCars,
     getAllCarsByRegistrationNumbers,
+    getTheMostFrequentlyBrand,
     getCarById,
     addCar,
     removeCar,
