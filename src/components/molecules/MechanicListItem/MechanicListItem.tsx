@@ -19,7 +19,9 @@ const MechanicListItem: React.FC<Mechanic> = ({ id, firstName, lastName, email, 
       <p>{email}</p>
       <p>{phoneNumber}</p>
       <p>{salary}$</p>
-      <Button onClick={() => handleDeleteMechanic(Number(id))}>X</Button>
+      <Button isRed onClick={() => handleDeleteMechanic(Number(id))}>
+        X
+      </Button>
     </Wrapper>
   );
 };

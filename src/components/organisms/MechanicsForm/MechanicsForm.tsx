@@ -73,7 +73,7 @@ const MechanicsForm = () => {
         <FormField label="Phone Number" id="phoneNumber" name="phoneNumber" value={mechanicFormValues.phoneNumber} onChange={handleInputChange} />
         <FormField label="Salary" id="salary" name="salary" type="number" value={mechanicFormValues.salary} onChange={handleInputChange} />
         {error.length !== 0 && <Error>{error[error.length - 1]}</Error>}
-        <Button isBig type="submit">
+        <Button isBig isGreen type="submit">
           Add
         </Button>
       </ViewWrapper>

@@ -20,7 +20,9 @@ const CarListItem: React.FC<Car> = ({ id, registrationNumber, brand, model, vin 
       <p>{brand}</p>
       <p>{model}</p>
       <p>{vin}</p>
-      <Button onClick={() => handleDeleteCar(Number(id))}>X</Button>
+      <Button isRed onClick={() => handleDeleteCar(Number(id))}>
+        X
+      </Button>
     </Wrapper>
   );
 };

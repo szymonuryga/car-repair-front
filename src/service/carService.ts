@@ -7,7 +7,7 @@ export function findCars() {
   return http.get(apiEndpoint);
 }
 
-export function findTheMostFrequentlyBrand() {
+export function findTheMostFrequentlyRepairedBrand() {
   return http.get(apiEndpoint + '/brand');
 }
 

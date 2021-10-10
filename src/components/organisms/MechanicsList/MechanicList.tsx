@@ -51,7 +51,9 @@ const MechanicsList = () => {
       <Header>
         <Title>Mechanics</Title>
         <Link to="mechanics/add">
-          <Button isBig>Add</Button>
+          <Button isBig isGreen>
+            Add
+          </Button>
         </Link>
       </Header>
       <StyledList>

@@ -79,7 +79,7 @@ const CarForm = () => {
         <FormField label="Model" id="model" name="model" value={carFormValues.model} onChange={handleInputChange} />
         <FormField label="Vin" id="vin" name="vin" value={carFormValues.vin} onChange={handleInputChange} />
         {error.length !== 0 && <Error>{error[error.length - 1]}</Error>}
-        <Button isBig type="submit">
+        <Button isBig isGreen type="submit">
           Add
         </Button>
       </ViewWrapper>

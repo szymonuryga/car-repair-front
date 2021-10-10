@@ -138,7 +138,7 @@ const RepairForm = () => {
         />
         <ComboBox items={categories} label="Category" name="category" id="category" handleSelectedItemChange={handleSelectedItemChangeCategory} />
         {error.length !== 0 && <Error>{error[error.length - 1]}</Error>}
-        <Button isBig type="submit">
+        <Button isBig isGreen type="submit">
           Add
         </Button>
       </ViewWrapper>

@@ -20,7 +20,9 @@ const ClientListItem: React.FC<Client> = ({ id, firstName, lastName, nationalId,
       <p>{lastName}</p>
       <p>{nationalId}</p>
       <p>{phoneNumber}</p>
-      <Button onClick={() => handleDeleteClient(Number(id))}>X</Button>
+      <Button isRed onClick={() => handleDeleteClient(Number(id))}>
+        X
+      </Button>
     </Wrapper>
   );
 };

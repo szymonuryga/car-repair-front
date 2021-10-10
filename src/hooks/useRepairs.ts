@@ -6,10 +6,10 @@ import {
   saveRepair,
   assignPrice,
   endRepair,
-  findTheMostFrequentlyCar,
-  findTheMostFrequentlyClient,
-  findTheMostFrequentlyCategory,
-  findTheMostFrequentlyMechanic,
+  findTheMostFrequentlyRepairedCar,
+  findFavouriteClient,
+  findTheMostFrequentlyUsedCategory,
+  findTheBestMechanic,
 } from 'service/repairService';
 
 export const useRepairs = () => {
@@ -22,36 +22,36 @@ export const useRepairs = () => {
     }
   }, []);
 
-  const getTheMostFrequentlyCar = useCallback(async () => {
+  const getTheMostFrequentlyRepairedCar = useCallback(async () => {
     try {
-      const result = await findTheMostFrequentlyCar();
+      const result = await findTheMostFrequentlyRepairedCar();
       return result.data;
     } catch (e) {
       console.log(e);
     }
   }, []);
 
-  const getTheMostFrequentlyClient = useCallback(async () => {
+  const getFavouriteClient = useCallback(async () => {
     try {
-      const result = await findTheMostFrequentlyClient();
+      const result = await findFavouriteClient();
       return result.data;
     } catch (e) {
       console.log(e);
     }
   }, []);
 
-  const getTheMostFrequentlyCategory = useCallback(async () => {
+  const getTheMostFrequentlyUsedCategory = useCallback(async () => {
     try {
-      const result = await findTheMostFrequentlyCategory();
+      const result = await findTheMostFrequentlyUsedCategory();
       return result.data;
     } catch (e) {
       console.log(e);
     }
   }, []);
 
-  const getTheMostFrequentlyMechanic = useCallback(async () => {
+  const getTheBestMechanic = useCallback(async () => {
     try {
-      const result = await findTheMostFrequentlyMechanic();
+      const result = await findTheBestMechanic();
       return result.data;
     } catch (e) {
       console.log(e);
@@ -97,9 +97,9 @@ export const useRepairs = () => {
     addRepair,
     assignPriceToRepair,
     endOfRepair,
-    getTheMostFrequentlyCar,
-    getTheMostFrequentlyClient,
-    getTheMostFrequentlyCategory,
-    getTheMostFrequentlyMechanic,
+    getTheMostFrequentlyRepairedCar,
+    getFavouriteClient,
+    getTheMostFrequentlyUsedCategory,
+    getTheBestMechanic,
   };
 };

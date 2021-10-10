@@ -51,7 +51,9 @@ const RepairsList = () => {
       <Header>
         <Title>Repair</Title>
         <Link to="repairs/add">
-          <Button isBig>Add</Button>
+          <Button isBig isGreen>
+            Add
+          </Button>
         </Link>
       </Header>
       <StyledList>

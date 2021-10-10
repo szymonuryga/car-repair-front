@@ -39,7 +39,13 @@ const RepairListItem: React.FC<Repair> = ({
       </p>
       <p>{start?.substring(0, 10)}</p>
       <p>{registrationNumber}</p>
-      {end ? <p>{end.substring(0, 10)}</p> : <Button onClick={() => handleFinishRepair(Number(id))}>Finish</Button>}
+      {end ? (
+        <p>{end.substring(0, 10)}</p>
+      ) : (
+        <Button isBlue onClick={() => handleFinishRepair(Number(id))}>
+          Finish
+        </Button>
+      )}
       {price !== 0 ? <p>{price}</p> : ''}
       {/* <Button onClick={() => handleAsignPrice(Number(id))}>End</Button> */}
     </div>

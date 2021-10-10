@@ -7,19 +7,19 @@ export function findRepairs() {
   return http.get(apiEndpoint);
 }
 
-export function findTheMostFrequentlyCar() {
+export function findTheMostFrequentlyRepairedCar() {
   return http.get(apiEndpoint + '/car');
 }
 
-export function findTheMostFrequentlyClient() {
+export function findFavouriteClient() {
   return http.get(apiEndpoint + '/client');
 }
 
-export function findTheMostFrequentlyCategory() {
+export function findTheMostFrequentlyUsedCategory() {
   return http.get(apiEndpoint + '/category');
 }
 
-export function findTheMostFrequentlyMechanic() {
+export function findTheBestMechanic() {
   return http.get(apiEndpoint + '/mechanic');
 }
 

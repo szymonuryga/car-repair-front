@@ -73,7 +73,7 @@ const ClientForm = () => {
         <FormField label="National Id" id="nationalId" name="nationalId" value={clientFormValues.nationalId} onChange={handleInputChange} />
         <FormField label="Phone Number" id="phoneNumber" name="phoneNumber" value={clientFormValues.phoneNumber} onChange={handleInputChange} />
         {error.length !== 0 && <Error>{error[error.length - 1]}</Error>}
-        <Button isBig type="submit">
+        <Button isBig isGreen type="submit">
           Add
         </Button>
       </ViewWrapper>
