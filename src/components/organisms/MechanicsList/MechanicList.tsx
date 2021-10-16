@@ -45,7 +45,7 @@ const MechanicsList = () => {
         setPageLimit(limit);
       }
     })();
-  }, [getAllMechanics, pages]);
+  }, [getAllMechanics, pages, dataLimit]);
   return (
     <ViewWrapper>
       <Header>

@@ -45,7 +45,7 @@ const CarsList = () => {
         setPageLimit(limit);
       }
     })();
-  }, [getAllCars, pages]);
+  }, [getAllCars, pages, dataLimit]);
   return (
     <ViewWrapper>
       <Header>

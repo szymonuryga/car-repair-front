@@ -9,4 +9,5 @@ export interface Repair {
   registrationNumber: string;
   category: string;
   email: string;
+  onClick?: () => void;
 }

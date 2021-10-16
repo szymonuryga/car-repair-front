@@ -9,18 +9,30 @@ import Pagination from 'components/molecules/Pagination/Pagination';
 import { useRepairs } from 'hooks/useRepairs';
 import { Repair } from 'helpers/interfaces/Repair';
 import RepairListItem from 'components/molecules/RepairListItem/RepairListItem';
+import useModal from 'components/organisms/Modal/useModal';
+import Modal from '../Modal/Modal';
+import RepairDetails from 'components/molecules/RepairDetails/RepairDetails';
 
 const RepairsList = () => {
   const [repairs, setRepairs] = useState([]);
-  const { getAllRepairs } = useRepairs();
+  const { getAllRepairs, getRepairById } = useRepairs();
   const dataLimit = window.innerHeight < 900 ? 7 : 12;
   const [pages, setPages] = useState(Math.ceil(repairs.length / dataLimit));
   const [currentPage, setCurrentPage] = useState(1);
   const [pageLimit, setPageLimit] = useState(pages);
+  const [currentRepair, setCurrentRepair] = useState<Repair>();
+  const { isOpen, handleOpenModal, handleCloseModal } = useModal();
+
   const getPaginatedData = () => {
     const startIndex = currentPage * dataLimit - dataLimit;
     const endIndex = startIndex + dataLimit;
     return repairs.slice(startIndex, endIndex);
+  };
+
+  const handleOpenRepairDetails = async (id: number) => {
+    const repair = await getRepairById(id);
+    setCurrentRepair(repair);
+    handleOpenModal();
   };
 
   function goToNextPage() {
@@ -45,7 +57,8 @@ const RepairsList = () => {
         setPageLimit(limit);
       }
     })();
-  }, [getAllRepairs, pages]);
+  }, [getAllRepairs, pages, dataLimit]);
+
   return (
     <ViewWrapper>
       <Header>
@@ -61,16 +74,15 @@ const RepairsList = () => {
           getPaginatedData().map((repair: Repair) => (
             <RepairListItem
               id={repair.id}
-              firstName={repair.firstName}
-              lastName={repair.lastName}
               price={repair.price}
-              nationalId={repair.nationalId}
               registrationNumber={repair.registrationNumber}
-              category={repair.category}
               email={repair.email}
               start={repair.start}
               end={repair.end}
               key={repair.id}
+              nationalId={repair.nationalId}
+              category={repair.category}
+              onClick={() => handleOpenRepairDetails(Number(repair.id))}
             />
           ))}
       </StyledList>
@@ -84,6 +96,24 @@ const RepairsList = () => {
           changePage={changePage}
         />
       )}
+      <Modal isOpen={isOpen} handleClose={handleCloseModal}>
+        {currentRepair ? (
+          <RepairDetails
+            id={currentRepair.id}
+            firstName={currentRepair.firstName}
+            lastName={currentRepair.lastName}
+            price={currentRepair.price}
+            nationalId={currentRepair.nationalId}
+            registrationNumber={currentRepair.registrationNumber}
+            category={currentRepair.category}
+            email={currentRepair.email}
+            start={currentRepair.start}
+            end={currentRepair.end}
+          />
+        ) : (
+          <p>Problem occured</p>
+        )}
+      </Modal>
     </ViewWrapper>
   );
 };

@@ -1,5 +1,5 @@
 import { useClients } from 'hooks/useClients';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Client } from 'helpers/interfaces/Client';
 import ClientListItem from 'components/molecules/ClientListItem/ClientListItem';
 import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper';
@@ -45,7 +45,7 @@ const ClientsList = () => {
         setPageLimit(limit);
       }
     })();
-  }, [getAllClients, pages]);
+  }, [getAllClients, pages, dataLimit]);
   return (
     <ViewWrapper>
       <Header>
@@ -57,8 +57,8 @@ const ClientsList = () => {
         </Link>
       </Header>
       <StyledList>
-        {clients.length > 0 &&
-          clients.map((client: Client) => (
+        {getPaginatedData().length > 0 &&
+          getPaginatedData().map((client: Client) => (
             <ClientListItem
               id={client.id}
               firstName={client.firstName}
