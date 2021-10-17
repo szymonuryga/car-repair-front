@@ -5,7 +5,7 @@ import { Wrapper } from './FormField.styles';
 
 type Props = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  value: string | number;
+  value: string | number | undefined;
   label: string;
   name: string;
   id: string;

@@ -5,6 +5,7 @@
       "prettier/prettier": ["warn", {
         "singleQuote": true,
         "endOfLine": "auto",
+        "parser": "typescript",
         "printWidth": 150
       }],
       "import/first": 0
@@ -14,5 +15,8 @@
       "node": true,
       "es6": true
     },
-    "parser": "babel-eslint"
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "sourceType": "module"
+    }
   }

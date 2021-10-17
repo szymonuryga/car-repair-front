@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from 'components/atoms/Button/Button';
 import { Repair } from 'helpers/interfaces/Repair';
 import { useRepairs } from 'hooks/useRepairs';
 import { SubWrapper, Wrapper } from './RepairListItem.styles';
+import useModal from 'components/organisms/Modal/useModal';
+import Modal from 'components/organisms/Modal/Modal';
+import AssignPriceForm from '../AssignPriceForm/AssignPriceForm';
 
 const RepairListItem: React.FC<Repair> = ({ id, start, end, price, registrationNumber, email, onClick }): JSX.Element => {
-  const { endOfRepair, assignPriceToRepair } = useRepairs();
+  const { endOfRepair } = useRepairs();
+  const { isOpen, handleOpenModal, handleCloseModal } = useModal();
+  const [currentRepairId, setCurrentRepairId] = useState<number>();
+
   const handleFinishRepair = async (id: number) => {
     try {
       await endOfRepair(id);
@@ -17,7 +23,8 @@ const RepairListItem: React.FC<Repair> = ({ id, start, end, price, registrationN
 
   const handleAsignPrice = async (id: number) => {
     try {
-      console.log(id);
+      setCurrentRepairId(id);
+      handleOpenModal();
     } catch (e) {
       console.log(e);
     }
@@ -43,6 +50,9 @@ const RepairListItem: React.FC<Repair> = ({ id, start, end, price, registrationN
           Assign Price
         </Button>
       )}
+      <Modal isOpen={isOpen} handleClose={handleCloseModal}>
+        {currentRepairId ? <AssignPriceForm id={currentRepairId} /> : <p>Problem occured</p>}
+      </Modal>
     </Wrapper>
   );
 };

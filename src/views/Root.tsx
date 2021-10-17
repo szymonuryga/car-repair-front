@@ -12,45 +12,51 @@ import MechanicsForm from 'components/organisms/MechanicsForm/MechanicsForm';
 import CarForm from 'components/organisms/CarForm/CarForm';
 import RepairsList from 'components/organisms/RepairsList/RepairsList';
 import RepairForm from 'components/organisms/RepairForm/RepairForm';
+import { ErrorProvider, useError } from 'hooks/useError';
+import ErrorMessage from 'components/molecules/ErrorMessage/ErrorMessage';
 
 const Root = () => {
+  const { error } = useError();
   return (
     <Router>
       <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <MainTemplate>
-          <Wrapper>
-            <Switch>
-              <Route exact path="/">
-                <Redirect to="/repairs" />
-              </Route>
-              <Route path="/repairs/add">
-                <RepairForm />
-              </Route>
-              <Route path="/repairs">
-                <RepairsList />
-              </Route>
-              <Route path="/cars/add">
-                <CarForm />
-              </Route>
-              <Route path="/cars">
-                <CarsList />
-              </Route>
-              <Route path="/clients/add">
-                <ClientForm />
-              </Route>
-              <Route path="/clients">
-                <ClientsList />
-              </Route>
-              <Route path="/mechanics/add">
-                <MechanicsForm />
-              </Route>
-              <Route path="/mechanics">
-                <MechanicsList />
-              </Route>
-            </Switch>
-          </Wrapper>
-        </MainTemplate>
+        <ErrorProvider>
+          <GlobalStyle />
+          <MainTemplate>
+            <Wrapper>
+              <Switch>
+                <Route exact path="/">
+                  <Redirect to="/repairs" />
+                </Route>
+                <Route path="/repairs/add">
+                  <RepairForm />
+                </Route>
+                <Route path="/repairs">
+                  <RepairsList />
+                </Route>
+                <Route path="/cars/add">
+                  <CarForm />
+                </Route>
+                <Route path="/cars">
+                  <CarsList />
+                </Route>
+                <Route path="/clients/add">
+                  <ClientForm />
+                </Route>
+                <Route path="/clients">
+                  <ClientsList />
+                </Route>
+                <Route path="/mechanics/add">
+                  <MechanicsForm />
+                </Route>
+                <Route path="/mechanics">
+                  <MechanicsList />
+                </Route>
+              </Switch>
+              {error ? <ErrorMessage /> : null}
+            </Wrapper>
+          </MainTemplate>
+        </ErrorProvider>
       </ThemeProvider>
     </Router>
   );
